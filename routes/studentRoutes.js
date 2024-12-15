@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
 const Student = require("../models/Student");
 
@@ -78,12 +79,10 @@ router.put("/:id", async (req, res) => {
       return res.status(404).json({ message: "Student not found" });
     }
 
-    res
-      .status(200)
-      .json({
-        message: "Student updated successfully",
-        student: updatedStudent,
-      });
+    res.status(200).json({
+      message: "Student updated successfully",
+      student: updatedStudent,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
