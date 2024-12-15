@@ -43,6 +43,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Get count of students
+router.get("/count", async (req, res) => {
+  try {
+    const studentCount = await Student.countDocuments();
+    res.json({ count: studentCount });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Get a student by ID
 router.get("/:id", async (req, res) => {
   try {
